@@ -55,7 +55,7 @@ body {
 
 .line {
   border-left: 1px solid black;
-  height: 100vh;
+  height: auto;
 }
 
 .notes {
@@ -78,14 +78,63 @@ input:focus {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
-  height: 300px;
+  height: 400px;
 }
 
 .note {
+  position: relative;
   padding: 0.5rem;
   background-color: white;
   border-radius: 10px;
 
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.note-heading {
+  margin-bottom: 0.2rem;
+}
+
+.date-added {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 1rem;
+}
+
+.edit {
+  display: none;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  width: 2rem;
+  height: auto;
+  cursor: pointer;
+}
+
+.note:hover .edit {
+  display: block;
+}
+
+.edit:hover {
+  transform: scale(1.1);
+}
+
+.note-1 {
+  background-color: #fdc770;
+}
+
+.note-2 {
+  background-color: #fc9871;
+}
+
+.note-3 {
+  background-color: #b491fb;
+}
+
+.note-4 {
+  background-color: #e2ec8d;
+}
+
+.note-5 {
+  background-color: #00d3fd;
 }
