@@ -15,19 +15,54 @@
         class="new-note"
         src="https://cdn-icons-png.flaticon.com/128/1828/1828919.png"
       />
-      <div class="circle circle-1"></div>
-      <div class="circle circle-2"></div>
-      <div class="circle circle-3"></div>
-      <div class="circle circle-4"></div>
-      <div class="circle circle-5"></div>
+      <div class="circle-container">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-5"></div>
+      </div>
     </section>
     <div class="line"></div>
     <div class="notes">
       <input class="search" type="search" placeholder="🔍 Search" />
       <h1>Notes.</h1>
       <div class="notes-container">
+        <div class="note new-note-card">
+          <h3 class="note-heading">
+            <input
+              type="text"
+              class="new-note-heading"
+              placeholder="Note heading..."
+            />
+          </h3>
+          <!-- <img
+            src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
+            class="star"
+          /> -->
+          <p class="note-text">
+            <input
+              type="text"
+              class="new-note-text"
+              placeholder="Note text..."
+            />
+          </p>
+          <!-- <div class="date-added"><b>00-00-0000</b></div> -->
+          <!-- <img
+            class="edit"
+            src="https://cdn-icons-png.flaticon.com/128/181/181540.png"
+          /> -->
+          <img
+            class="check"
+            src="https://cdn-icons-png.flaticon.com/128/711/711239.png"
+          />
+        </div>
         <div class="note note-1">
           <h3 class="note-heading">Note heading</h3>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
+            class="star"
+          />
           <p class="note-text">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Dignissimos, asperiores.
@@ -52,6 +87,10 @@
         </div>
         <div class="note note-3">
           <h3 class="note-heading">Note heading</h3>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
+            class="star"
+          />
           <p class="note-text">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
             fugit.
