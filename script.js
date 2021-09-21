@@ -12,7 +12,7 @@ const heading = document.querySelector('.new-note-heading');
 const btnAddNote = document.querySelector('.check');
 const noteText = document.querySelector('.new-note-text');
 const btnEditNote = document.querySelector('.edit');
-const starNote = document.querySelector('.star');
+const btnStarNote = document.querySelector('.star');
 
 //Variables//
 const now = new Date();
@@ -20,19 +20,41 @@ const dateNow = String(now.getDate()).padStart(2, 0);
 const monthNow = String(now.getMonth() + 1).padStart(2, 0);
 const yearNow = String(now.getFullYear());
 
+let bgColor;
+
 //Functions//
-const showNewNote = function () {
+
+const bookmarkNote = function (e) {
+  e.target.style.display = 'block';
+  console.log('a');
+};
+
+const showNewNote = function (e) {
+  notesContainer.insertBefore(
+    newNoteCard,
+    notesContainer.firstElementChild.previousSibling
+  );
+
   newNoteCard.style.display = 'block';
+  newNoteCard.classList.remove(
+    'note-1',
+    'note-2',
+    'note-3',
+    'note-4',
+    'note-5'
+  );
+  bgColor = e.target.classList[1];
+  newNoteCard.classList.add(e.target.classList[1]);
 };
 
 const addAndRenderNote = function () {
   const html = `
-<div class="note">
-          <h3 class="note-heading">${heading.value}</h3>
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
-            class="star"
-          />
+<div class="note ${bgColor}">
+          <h3 class="note-heading">${heading.value}</h3>   
+           <img
+           src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
+           class="star"
+           />     
           <p class="note-text">
             ${noteText.value}
           </p>
@@ -48,41 +70,25 @@ const addAndRenderNote = function () {
   heading.value = '';
   noteText.value = '';
   newNoteCard.style.display = 'none';
-};
-
-const editNote = function (e) {
-  //   e.target.src = 'https://cdn-icons-png.flaticon.com/128/711/711239.png';
-  const note = e.target.parentElement.children;
-  const heading = note[0].innerText;
-  const textInput = note[2].innerText;
-
-  const html = `
-  <input type = 'text'>${textInput}`;
-  e.target.parentElement.insertAdjacentHTML('afterbegin', html);
-  console.log(heading);
-  e.target.src = 'https://cdn-icons-png.flaticon.com/128/181/181540.png'
-    ? (e.target.src = 'https://cdn-icons-png.flaticon.com/128/711/711239.png ')
-    : (e.target.src = 'https://cdn-icons-png.flaticon.com/128/181/181540.png');
-  console.log(e.target.src);
+  newNoteCard.classList.remove(
+    'note-1',
+    'note-2',
+    'note-3',
+    'note-4',
+    'note-5'
+  );
+  circleContainer.style.display = 'none';
 };
 
 //Event Listeners//
-btnNewNote.addEventListener('click', showNewNote);
 
 btnNewNote.addEventListener('mouseover', () => {
-  console.log(circleContainer);
   circle.forEach(circle => (circle.parentElement.style.display = 'grid'));
-  console.log('aaa');
 });
 
 btnAddNote.addEventListener('click', addAndRenderNote);
 
-circle.forEach(circle =>
-  circle.addEventListener('click', e => {
-    newNoteCard.style.display = 'block';
-    console.log(e.target.classList[1]);
-    newNoteCard.classList.add(e.target.classList[1]);
-  })
-);
+circle.forEach(circle => circle.addEventListener('click', showNewNote));
 
-btnEditNote.addEventListener('click', editNote);
+// btnEditNote.addEventListener('click', editNote);
+btnStarNote.addEventListener('click', bookmarkNote);
