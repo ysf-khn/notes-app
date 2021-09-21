@@ -11,7 +11,7 @@ const newNoteCard = document.querySelector('.new-note-card');
 const heading = document.querySelector('.new-note-heading');
 const btnAddNote = document.querySelector('.check');
 const noteText = document.querySelector('.new-note-text');
-const editNote = document.querySelector('.edit');
+const btnEditNote = document.querySelector('.edit');
 const starNote = document.querySelector('.star');
 
 //Variables//
@@ -50,21 +50,39 @@ const addAndRenderNote = function () {
   newNoteCard.style.display = 'none';
 };
 
+const editNote = function (e) {
+  //   e.target.src = 'https://cdn-icons-png.flaticon.com/128/711/711239.png';
+  const note = e.target.parentElement.children;
+  const heading = note[0].innerText;
+  const textInput = note[2].innerText;
+
+  const html = `
+  <input type = 'text'>${textInput}`;
+  e.target.parentElement.insertAdjacentHTML('afterbegin', html);
+  console.log(heading);
+  e.target.src = 'https://cdn-icons-png.flaticon.com/128/181/181540.png'
+    ? (e.target.src = 'https://cdn-icons-png.flaticon.com/128/711/711239.png ')
+    : (e.target.src = 'https://cdn-icons-png.flaticon.com/128/181/181540.png');
+  console.log(e.target.src);
+};
+
 //Event Listeners//
 btnNewNote.addEventListener('click', showNewNote);
 
-btnNewNote.addEventListener('mouseover', () =>
-  circleContainer.forEach(circle => (circle.style.display = 'grid'))
-);
-
-// docket.addEventListener('click', () =>
-//   circleContainer.forEach(circle => (circle.style.display = 'none'))
-// );
-circle.forEach(circle =>
-  circle.addEventListener(
-    'mouseover',
-    () => (newNoteCard.style.backgroundColor = 'yellow')
-  )
-);
+btnNewNote.addEventListener('mouseover', () => {
+  console.log(circleContainer);
+  circle.forEach(circle => (circle.parentElement.style.display = 'grid'));
+  console.log('aaa');
+});
 
 btnAddNote.addEventListener('click', addAndRenderNote);
+
+circle.forEach(circle =>
+  circle.addEventListener('click', e => {
+    newNoteCard.style.display = 'block';
+    console.log(e.target.classList[1]);
+    newNoteCard.classList.add(e.target.classList[1]);
+  })
+);
+
+btnEditNote.addEventListener('click', editNote);
