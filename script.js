@@ -12,7 +12,6 @@ const heading = document.querySelector('.new-note-heading');
 const btnAddNote = document.querySelector('.check');
 const noteText = document.querySelector('.new-note-text');
 const btnEditNote = document.querySelector('.edit');
-const btnStarNote = document.querySelector('.star');
 
 //Variables//
 const now = new Date();
@@ -20,13 +19,16 @@ const dateNow = String(now.getDate()).padStart(2, 0);
 const monthNow = String(now.getMonth() + 1).padStart(2, 0);
 const yearNow = String(now.getFullYear());
 
-let bgColor;
+let bgColor, btnStarNote;
 
 //Functions//
+const editNote = function (e) {
+  e.target.style.display = 'block';
+  console.log(e.target.style.display);
+};
 
 const bookmarkNote = function (e) {
   e.target.style.display = 'block';
-  console.log('a');
 };
 
 const showNewNote = function (e) {
@@ -52,8 +54,8 @@ const addAndRenderNote = function () {
 <div class="note ${bgColor}">
           <h3 class="note-heading">${heading.value}</h3>   
            <img
-           src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
            class="star"
+           src="https://cdn-icons-png.flaticon.com/128/3179/3179967.png"
            />     
           <p class="note-text">
             ${noteText.value}
@@ -78,6 +80,10 @@ const addAndRenderNote = function () {
     'note-5'
   );
   circleContainer.style.display = 'none';
+
+  // console.log(btnStarNote);
+  btnStarNote = document.querySelector('.star');
+  btnStarNote.addEventListener('click', bookmarkNote);
 };
 
 //Event Listeners//
@@ -90,5 +96,13 @@ btnAddNote.addEventListener('click', addAndRenderNote);
 
 circle.forEach(circle => circle.addEventListener('click', showNewNote));
 
-// btnEditNote.addEventListener('click', editNote);
-btnStarNote.addEventListener('click', bookmarkNote);
+// btnStarNote.forEach(star => star.addEventListener('click', editNote));
+
+// notesContainer.addEventListener('click', e => {
+//   console.log(e.target);
+//   if (e.target.classList.contains('star')) e.target.style.display = 'block';
+// });
+
+notesContainer.addEventListener('click', e => {
+  if (e.target.style.display === 'block') console.log('aaa');
+});
